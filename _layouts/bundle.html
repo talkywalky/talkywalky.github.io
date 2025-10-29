@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<section class="main-content">
+    <h1>{{ page.title }}</h1>
+
+    <div class="bundle-description">
+        {{ content }}
+    </div>
+
+    <h2>📋 Information</h2>
+    <ul>
+        <li><strong>Composer:</strong> <code>{{ page.composer }}</code></li>
+        <li><strong>Repository:</strong> <a href="{{ page.repo }}">{{ page.repo }}</a></li>
+        <li><strong>Documentation:</strong> <a href="{{ page.docs }}">README</a></li>
+        <li><strong>Status:</strong> <em>{{ page.status }}</em></li>
+        <li><strong>PHP minimum:</strong> {{ page.php_min }}</li>
+        <li><strong>Symfony:</strong> {{ page.symfony_min }} → {{ page.symfony_max }}</li>
+    </ul>
+
+    {% if page.maintainers %}
+    <h2>👥 Maintainers</h2>
+    <ul>
+        {% for m in page.maintainers %}
+        <li>
+            <strong>Team:</strong> {{ m.team }}
+            {% if m.owners %} | <strong>Owners:</strong> {{ m.owners | join: ", " }}{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p><a href="{{ site.baseurl }}/bundles/">← Back to catalog</a></p>
+
+    <footer class="site-footer">
+        <span class="site-footer-owner">{{ site.title }}</span>
+    </footer>
+</section>

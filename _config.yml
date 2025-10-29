@@ -1,0 +1,16 @@
+title: "TalkyWalky"
+description: "Technical resources and tools for development."
+url: "https://talkywalky.github.io"
+baseurl: ""
+
+remote_theme: pages-themes/cayman@v0.2.0
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+
+collections:
+  bundles:
+    output: true
+    permalink: /bundle/:slug/
