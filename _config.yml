@@ -13,4 +13,7 @@ plugins:
 collections:
   bundles:
     output: true
-    permalink: /bundle/:slug/
+    permalink: /bundles/:slug/
+  documentations:
+    output: true
+    permalink: /documentations/:slug/

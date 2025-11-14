@@ -1,0 +1,85 @@
+---
+layout: default
+---
+
+<section class="main-content">
+    <h1>{{ page.title }}</h1>
+
+    <div class="bundle-description">
+        {{ content }}
+    </div>
+
+    {% if page.last_update %}
+    <hr>
+
+    <h2>📅 Last update</h2>
+    <em>{{ page.last_update }}</em>
+    {% endif %}
+
+    <p><a href="{{ site.baseurl }}/documentations/">← Back to all documentation</a></p>
+
+    <style>
+        /* Subtle anchor links for headings inside documentation content */
+        .bundle-description h2, .bundle-description h3, .bundle-description h4 {
+            position: relative;
+        }
+
+        .bundle-description .anchor-link {
+            margin-left: .5rem;
+            opacity: 0;
+            text-decoration: none;
+            font-weight: bold;
+            color: inherit;
+            transition: opacity .15s ease-in-out;
+        }
+
+        .bundle-description h2:hover .anchor-link,
+        .bundle-description h3:hover .anchor-link,
+        .bundle-description h4:hover .anchor-link {
+            opacity: .6;
+        }
+
+        .bundle-description .anchor-link:hover {
+            opacity: 1;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.querySelector('.bundle-description');
+
+            if (!container) {
+                return;
+            }
+
+            const headings = container.querySelectorAll('h2, h3, h4');
+
+            headings.forEach(function (h) {
+                if (!h.id) {
+                    const slug = h.textContent.trim().toLowerCase()
+                        .replace(/[^\w\- ]+/g, '')
+                        .replace(/\s+/g, '-');
+
+                    if (slug) {
+                        h.id = slug;
+                    }
+                }
+
+                if (!h.id) {
+                    return; // still no id, skip
+                }
+
+                let a = document.createElement('a');
+                a.className = 'anchor-link';
+                a.href = '#' + h.id;
+                a.setAttribute('aria-label', 'Anchor link to this section');
+                a.textContent = '#';
+                h.appendChild(a);
+            });
+        });
+    </script>
+
+    <footer class="site-footer">
+        <span class="site-footer-owner">{{ site.title }}</span>
+    </footer>
+</section>
